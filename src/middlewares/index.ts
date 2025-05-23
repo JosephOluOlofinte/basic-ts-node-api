@@ -7,13 +7,13 @@ export const isAuthenticated = async( req: express.Request, res: express.Respons
         const sessionToken = req.cookies["JOSEPH-AUTH"];
 
         if (!sessionToken) {
-            return res.status(400).json({ message: "Does not exist" });
+            return res.status(400).json({ message: "You are not authenticated" });
         }
 
         const existingUser = await getUserBySessionToken(sessionToken);
 
         if (!existingUser) {
-            return res.status(400).json({ message: "this user does not exist"});
+            return res.status(400).json({ message: "This user does not exist"});
         }
 
         merge(req, { identity: existingUser });
