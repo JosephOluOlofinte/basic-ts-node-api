@@ -8,11 +8,11 @@ export const isOwner = async (req: express.Request, res: express.Response, next:
         const currentUserId = get(req, "identity._id") as string;
 
         if(!currentUserId) {
-            return res.status(403).json({ message: "Error! You are not allowed to perform this action!" });
+            return res.status(403).json({ message: "Your account does not exist" });
         }
 
         if(currentUserId.toString() !== id) {
-            return res.status(403).json({ message: "Error! you are not properly authenticated!" });
+            return res.status(403).json({ message: "Error! you are not cleared to take this action!" });
         }
 
         next();

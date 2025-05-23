@@ -4,7 +4,7 @@ import { isAuthenticated, isOwner } from '../middlewares';
 
 export default (router: express.Router) => {
     router.get('/users', isAuthenticated, getAllUsers);
-    router.delete('/users/:id', isOwner, deleteUser);
+    router.delete('/users/:id', isAuthenticated, isOwner, deleteUser);
 };
 
 // This file defines the routes for the users. It imports the necessary modules and functions, and then exports a function that takes a router as an argument. The function defines a GET route for '/users' that is protected by the isAuthenticated middleware and calls the getAllUsers controller function.
